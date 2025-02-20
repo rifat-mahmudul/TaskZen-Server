@@ -5,6 +5,9 @@ const router = express.Router();
 router
     .route('/')
     .post(postTask)
+
+router
+    .route('/getTodoTask/:email')
     .get(getTodoTask)
 
 module.exports = router;

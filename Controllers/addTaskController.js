@@ -14,7 +14,8 @@ const postTask = async (req, res) => {
 
 const getTodoTask = async (req, res) => {
     try {
-        const result = await Task.find({category : 'To-Do'});
+        const email = req.params.email;
+        const result = await Task.find({ userEmail: email, category: 'To-Do' });
         res.status(200).send(result);
     } catch (error) {
         console.log(`error from get todo task controller: ${error}`);
