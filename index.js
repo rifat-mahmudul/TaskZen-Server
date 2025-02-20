@@ -1,13 +1,18 @@
 require('dotenv').config();
 const mongoose = require('mongoose');
 const express = require('express');
+const cors = require('cors');
 const cookieParse = require('cookie-parser');
 const port = process.env.PORT || 5000;
+
+// all routers import here
+const addTaskHandler = require('./Routes/addTaskHandler');
 
 // apps and middlewares
 const app = express();
 app.use(express.json());
 app.use(cookieParse());
+app.use(cors());
 
 const user = process.env.DB_USER;
 const pass = process.env.DB_PASS;
@@ -22,6 +27,9 @@ mongoose.connect(uri)
 .catch((err) => {
     console.log(`error from database connection: ${err}`);
 });
+
+// all api routes here
+app.use('/add-task', addTaskHandler);
 
 
 app.get('/' , (req, res) => {
