@@ -1,5 +1,5 @@
 const express = require('express');
-const { postTask, getTodoTask, getInProgressTask } = require('../Controllers/addTaskController');
+const { postTask, getTodoTask, getInProgressTask, getDoneTask } = require('../Controllers/addTaskController');
 const router = express.Router();
 
 router
@@ -13,5 +13,9 @@ router
 router
     .route('/getInProgressTask/:email')
     .get(getInProgressTask)
+
+router
+    .route('/getDoneTask/:email')
+    .get(getDoneTask)
 
 module.exports = router;
