@@ -45,9 +45,23 @@ const getDoneTask = async (req, res) => {
     }
 }
 
+const updateCategory = async (req, res) => {
+    const { id } = req.params;
+    const { category } = req.body;
+
+    try {
+        const updatedTask = await Task.findByIdAndUpdate(id, { category }, { new: true });
+        res.status(200).send(updatedTask);
+    } catch (error) {
+        console.log(`error from update task category controller: ${error}`);
+        res.status(500).send(`error from update task category controller: ${error}`);
+    }
+}
+
 module.exports = {
     postTask,
     getTodoTask,
     getInProgressTask,
-    getDoneTask
+    getDoneTask,
+    updateCategory
 }
