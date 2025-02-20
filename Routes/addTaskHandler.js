@@ -1,9 +1,10 @@
 const express = require('express');
-const { postTask } = require('../Controllers/addTaskController');
+const { postTask, getTodoTask } = require('../Controllers/addTaskController');
 const router = express.Router();
 
 router
     .route('/')
-    .post(postTask);
+    .post(postTask)
+    .get(getTodoTask)
 
 module.exports = router;
