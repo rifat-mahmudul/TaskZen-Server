@@ -7,6 +7,7 @@ const port = process.env.PORT || 5000;
 
 // all routers import here
 const addTaskHandler = require('./Routes/addTaskHandler');
+const userHandler = require('./Routes/userHandler');
 
 // apps and middlewares
 const app = express();
@@ -29,6 +30,7 @@ mongoose.connect(uri)
 });
 
 // all api routes here
+app.use('/users', userHandler)
 app.use('/add-task', addTaskHandler);
 
 
