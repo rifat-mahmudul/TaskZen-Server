@@ -23,7 +23,19 @@ const getTodoTask = async (req, res) => {
     }
 }
 
+const getInProgressTask = async (req, res) => {
+    try {
+        const email = req.params.email;
+        const result = await Task.find({ userEmail: email, category: 'In Progress' });
+        res.status(200).send(result);
+    } catch (error) {
+        console.log(`error from get todo task controller: ${error}`);
+        res.status(500).send(`error from get todo task controller: ${error}`);
+    }
+}
+
 module.exports = {
     postTask,
-    getTodoTask
+    getTodoTask,
+    getInProgressTask
 }
