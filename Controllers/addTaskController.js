@@ -81,6 +81,25 @@ const getTaskById = async (req, res) => {
     }
 }
 
+const updateSingleTask = async (req, res) => {
+    try {
+        const {id} = req.params;
+        const taskData = req.body;
+        const query = {_id : id};
+        const updateDoc = {
+            $set : {
+                ...taskData
+            }
+        }
+
+        const result = await Task.updateOne(query, updateDoc);
+        res.status(200).send(result);
+    } catch (error) {
+        console.log(`error from update single task controller: ${error}`);
+        res.status(500).send(`error from update single task controller: ${error}`);
+    }
+}
+
 module.exports = {
     postTask,
     getTodoTask,
@@ -88,5 +107,6 @@ module.exports = {
     getDoneTask,
     updateCategory,
     deleteTask,
-    getTaskById
+    getTaskById,
+    updateSingleTask
 }
