@@ -69,11 +69,24 @@ const deleteTask = async (req, res) => {
     }
 }
 
+const getTaskById = async (req, res) => {
+    try {
+        const {id} = req.params;
+        const query = {_id : id};
+        const result = await Task.findOne(query);
+        res.status(200).send(result);
+    } catch (error) {
+        console.log(`error from get task by id: ${error}`);
+        res.status(500).send(`error from get task by id: ${error}`);
+    }
+}
+
 module.exports = {
     postTask,
     getTodoTask,
     getInProgressTask,
     getDoneTask,
     updateCategory,
-    deleteTask
+    deleteTask,
+    getTaskById
 }
