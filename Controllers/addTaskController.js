@@ -58,10 +58,22 @@ const updateCategory = async (req, res) => {
     }
 }
 
+const deleteTask = async (req, res) => {
+    const {id} = req.params;
+    try {
+        const result = await Task.findByIdAndDelete(id);
+        res.status(200).send(result);
+    } catch (error) {
+        console.log(`error from delete task controller: ${error}`);
+        res.status(500).send(`error from delete task controller: ${error}`);
+    }
+}
+
 module.exports = {
     postTask,
     getTodoTask,
     getInProgressTask,
     getDoneTask,
-    updateCategory
+    updateCategory,
+    deleteTask
 }

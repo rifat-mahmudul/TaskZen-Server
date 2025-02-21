@@ -1,5 +1,5 @@
 const express = require('express');
-const { postTask, getTodoTask, getInProgressTask, getDoneTask, updateCategory } = require('../Controllers/addTaskController');
+const { postTask, getTodoTask, getInProgressTask, getDoneTask, updateCategory, deleteTask } = require('../Controllers/addTaskController');
 const router = express.Router();
 
 router
@@ -21,5 +21,9 @@ router
 router
     .route('/updateCategory/:id')
     .patch(updateCategory)
+
+router
+    .route('/deleteTask/:id')
+    .delete(deleteTask)
 
 module.exports = router;
